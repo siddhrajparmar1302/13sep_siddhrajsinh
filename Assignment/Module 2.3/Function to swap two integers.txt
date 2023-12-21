@@ -1,0 +1,99 @@
+// Function to swap two integers
+#include <stdio.h>
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// Function to perform bubble sort in ascending order
+void bubbleSortAsc(int arr[], int size)
+{
+    for (int i = 0; i < size - 1; i++) 
+    {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+// Function to perform bubble sort in descending order
+void bubbleSortDesc(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+// Function to print an array
+void printArray(int arr[], int size)
+{
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int size;
+    // Input size of the arrays
+    printf("Enter the size of the arrays: ");
+    scanf("%d", &size);
+
+    int array1[size], array2[size];
+
+    // Input elements of the first array
+    printf("Enter %d elements for the first array:\n", size);
+    for (int i = 0; i < size; i++) 
+    {
+        scanf("%d", &array1[i]);
+    }
+
+    // Input elements of the second array
+    printf("Enter %d elements for the second array:\n", size);
+    for (int i = 0; i < size; i++)
+    {
+        scanf("%d", &array2[i]);
+    }
+
+    int choice;
+
+    // Input choice for sorting
+    printf("Choose sorting order:\n");
+    printf("1. Ascending Order\n");
+    printf("2. Descending Order\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    // Perform sorting based on user choice
+    switch (choice)
+    {
+        case 1:
+            // Ascending order
+            bubbleSortAsc(array1, size);
+            bubbleSortAsc(array2, size);
+            break;
+        case 2:
+            // Descending order
+            bubbleSortDesc(array1, size);
+            bubbleSortDesc(array2, size);
+            break;
+        default:
+            printf("Invalid choice!\n");
+            return 1; // Exit with an error code
+    }
+
+    // Output the sorted arrays
+    printf("Sorted Array 1: ");
+    printArray(array1, size);
+
+    printf("Sorted Array 2: ");
+    printArray(array2, size);
+
+    return 0;
+}
